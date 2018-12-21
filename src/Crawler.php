@@ -1,5 +1,5 @@
 <?php 
-namespace plugin\src;
+namespace StaMetok;
 
 class Crawler {
     protected $urls = array();
