@@ -2,14 +2,11 @@
 namespace StaMetok;
 
 use Composer\Composer;
-use Composer\EventDispatcher\Event;
-use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginEvents;
 use Composer\Plugin\PluginInterface;
-use Symfony\Component\Console\Helper\Table;
 
-class Crawler implements PluginInterface, EventSubscriberInterface
+class Crawler implements PluginInterface
 {
     
     protected $composer;
