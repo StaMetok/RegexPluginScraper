@@ -2,11 +2,8 @@
     "name": "StaMetok/RegexPluginScraper",
     "type": "composer-plugin",
     "require": {
-        "php": "^7.0",
+        "composer/composer": "*",
         "composer-plugin-api": "^1.1"
-    },
-    "require-dev": {
-        "composer/composer": "^1.0.2"
     },
     "autoload": {
         "psr-4": {
@@ -15,5 +12,7 @@
     },
     "extra": {
         "class": "StaMetok\\Crawler"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
