@@ -1,7 +1,19 @@
 <?php 
 namespace StaMetok;
 
-class Crawler {
+use Composer\Composer;
+use Composer\EventDispatcher\Event;
+use Composer\EventDispatcher\EventSubscriberInterface;
+use Composer\IO\IOInterface;
+use Composer\Plugin\PluginEvents;
+use Composer\Plugin\PluginInterface;
+use Symfony\Component\Console\Helper\Table;
+
+class Crawler implements PluginInterface, EventSubscriberInterface
+{
+    
+    protected $composer;
+    protected $io;
     protected $urls = array();
     protected $regex;
     protected $matcher;
@@ -10,6 +22,11 @@ class Crawler {
     protected $verbose = false;
     protected $results = array();
     
+    public function activate(Composer $composer, IOInterface $io)
+    {
+        $this->composer = $composer;
+        $this->io = $io;
+    }
     public function __construct(array $config = array())
     {
         $this->matcher = new Matcher();
