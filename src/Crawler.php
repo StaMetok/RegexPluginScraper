@@ -6,7 +6,7 @@ use Composer\EventDispatcher\Event;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginEvents;
-use Composer\Plugin\PluginInterface
+use Composer\Plugin\PluginInterface;
 
 class Crawler implements PluginInterface, EventSubscriberInterface{
     protected $urls = array();
