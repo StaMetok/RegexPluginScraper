@@ -2,8 +2,14 @@
 namespace plugin\src;
 
 use Sunra\PhpSimple\HtmlDomParser;
+use Composer\Composer;
+use Composer\EventDispatcher\Event;
+use Composer\EventDispatcher\EventSubscriberInterface;
+use Composer\IO\IOInterface;
+use Composer\Plugin\PluginEvents;
+use Composer\Plugin\PluginInterface;
 
-class Crawler {
+class Crawler  implements PluginInterface, EventSubscriberInterface{
     protected $urls = array();
     protected $regex;
     protected $matcher;
@@ -11,6 +17,15 @@ class Crawler {
     protected $messages = '';
     protected $verbose = false;
     protected $results = array();
+    protected $composer;
+    protected $io;
+
+	
+	public function activate(Composer $composer, IOInterface $io)
+    {
+        $this->composer = $composer;
+        $this->io = $io;
+    }
 
 
     
