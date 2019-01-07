@@ -1,5 +1,5 @@
 <?php
-namespace StaMetok;
+namespace plugin\src;
 
 class Matcher {
     protected $matches = array();
