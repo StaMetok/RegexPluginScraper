@@ -2,8 +2,11 @@
 namespace plugin\src;
 
 use Sunra\PhpSimple\HtmlDomParser;
+use Composer\Composer;
+use Composer\IO\IOInterface;
+use Composer\Plugin\PluginInterface;
 
-class Crawler {
+class Crawler implements PluginInterface{
     protected $urls = array();
     protected $regex;
     protected $matcher;
@@ -14,6 +17,11 @@ class Crawler {
     protected $composer;
     protected $io;
 
+	public function activate(Composer $composer, IOInterface $io)
+    {
+        $this->composer = $composer;
+        $this->io = $io;
+    }
 public function __construct(array $config = array())
     {
         $this->matcher = new Matcher();
