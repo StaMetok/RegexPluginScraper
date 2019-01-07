@@ -1,16 +1,9 @@
 <?php 
-namespace StaMetok;
+namespace plugin\src;
 
-use Composer\Composer;
-use Composer\IO\IOInterface;
-use Composer\Plugin\PluginEvents;
-use Composer\Plugin\PluginInterface;
+use Sunra\PhpSimple\HtmlDomParser;
 
-class Crawler implements PluginInterface
-{
-    
-    protected $composer;
-    protected $io;
+class Crawler {
     protected $urls = array();
     protected $regex;
     protected $matcher;
@@ -18,20 +11,17 @@ class Crawler implements PluginInterface
     protected $messages = '';
     protected $verbose = false;
     protected $results = array();
+
+
     
-    public function activate(Composer $composer, IOInterface $io)
-    {
-        $this->composer = $composer;
-        $this->io = $io;
-    }
     public function __construct(array $config = array())
     {
         $this->matcher = new Matcher();
-
-        foreach ($config as $item => $value)
+		foreach ($config as $item => $value)
         {
             $this->{'set'.ucfirst($item)}($value);
         }
+        
     }
     public function setUrls(array $urls)
     {
@@ -77,8 +67,9 @@ class Crawler implements PluginInterface
         foreach ($this->urls as $url)
         {
             $this->addMessage('Crawling ' . $url);
-            $page = new Page($url);
-            $html = $page->getHTML();
+            //$page = new Page($url);
+            //$html = $page->getHTML();
+            $html = HtmlDomParser::file_get_html($url);
             if (preg_match_all('/'.$this->regex.'/ms', $html, $matchLines, PREG_SET_ORDER))
             {
                 foreach ($matchLines as $matchLine)
